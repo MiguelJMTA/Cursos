@@ -1,0 +1,93 @@
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# Entorno
+.env
+.env.local
+.env.*.local
+!.env.example
+.env.test
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Directorios de compilación
+dist/
+build/
+coverage/
+out/
+*.tsbuildinfo
+
+# Caché
+.cache/
+.parcel-cache/
+
+# Configuración de IDEs y editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.code-workspace
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Tests
+/junit.xml
+/test-results.xml
+
+# Paquetes
+yarn.lock
+pnpm-lock.yaml
+
+# Archivos de configuración local
+/config/local*.json
+
+# Archivos generados por el editor
+*.iml
+
+# Archivos de usuario
+*.user
+
+# Archivos de desarrollo
+.nyc_output/
+
+# Archivos de producción
+*.env.prod
+
+# Archivos de Visual Studio Code
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Archivos de Jest
+/jest.config.local.js
+
+# Archivos de Playwright
+/playwright-report/
+/test-results/
+
+# Archivos de TypeScript
+tsconfig.tsbuildinfo
+
+# Archivos de Redis
+dump.rdb
+
+# Archivos de SQLite
+*.sqlite
+*.sqlite3
