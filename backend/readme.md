@@ -52,23 +52,13 @@ types/                     → Tipos globales, DTOs, interfaces auxiliares
 
 ```mermaid
 graph TD
-    A[Client HTTP Request] --> B[Presentation Layer]
-    B --> C[Application Layer (Use-Cases)]
-    C --> D[Domain Layer]
-    D --> E[Domain Entities]
-    D --> F[Domain Services]
-    D --> G[Interfaces (Contracts)]
-    G --> H[Infrastructure Layer]
-    H --> H1[Database (Sequelize Repos)]
-    H --> H2[Email Provider]
-    H --> H3[Logging, Utils, Middlewares]
-
-    B[Presentation Layer]:::layer
-    C[Application Layer]:::layer
-    D[Domain Layer]:::layer
-    H[Infrastructure Layer]:::layer
-
-    classDef layer fill:#f9f,stroke:#333,stroke-width:1px;
+    A[Client HTTP Request] --> B[Presentation Layer - controllers and routes]
+    B --> C[Application Layer - use-cases]
+    C --> D[Domain Layer - entities, services, interfaces]
+    D --> E[Infrastructure Layer]
+    E --> E1[Database: models and repositories]
+    E --> E2[Email Service]
+    E --> E3[Logging, Utils, Middlewares]
 ```
 
 ---
@@ -147,4 +137,5 @@ tests/
 ## 👨‍💻 Autor
 
 > Hecho por MiguelJMTA
+> 
 > GitHub: https://github.com/MiguelJMTA/
