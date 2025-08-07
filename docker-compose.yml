@@ -1,0 +1,17 @@
+
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: contrasena
+      POSTGRES_DB: cursos
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

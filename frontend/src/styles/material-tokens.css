@@ -1,0 +1,18 @@
+:root {
+  /* Color tokens */
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-surface: #fffbfe;
+  --md-sys-color-on-surface: #1c1b1f;
+
+  /* Shape */
+  --md-sys-shape-corner-medium: 12px;
+
+  /* Typography */
+  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-weight: 500;
+  --md-sys-typescale-label-large-lineheight: 20px;
+
+  /* Elevation (shadow) */
+  --md-sys-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
