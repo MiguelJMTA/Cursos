@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
-import { RegisterUserUseCase } from '@app/use-cases/register-user';
-import { GetUserProfileUseCase } from '@app/use-cases/get-profile';
-import { ApiResponse } from '@infra/utils/api-response';
+import { RegisterUserUseCase } from '@app/use-cases/user.register';
+import { GetUserProfileUseCase } from '@app/use-cases/user.get.profile';
+import { ApiResponse } from '@infra/utils/api.response';
+import { PasswordHash } from '@infra/utils/password.service';
+import { SequelizeUserRepository } from '@infra/database/repositories/user';
 
 export class UserController {
   constructor(
@@ -10,33 +12,23 @@ export class UserController {
   ) { }
 
   async register(req: Request, res: Response) {
-    try {
-      const user = await this.registerUseCase.execute(req.body);
-      return ApiResponse.success(res, 201, {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        career: user.career,
-        semester: user.semester
-      });
-    } catch (error) {
-      return ApiResponse.error(res, 400, 'Usuario no se pudo registrar'+error);
-    }
+
+    const data = req.body;
+
+    const user = await this.registerUseCase.execute(data);
+
+    ApiResponse.success(res, 200, user, "Usuario registrado");
+
   }
 
   async getProfile(req: Request, res: Response) {
-    try {
-      const userId = req.user?.id;
-      if (!userId) { throw new Error("No se encontró usuario") }
-      const user = await this.getProfileUseCase.execute(userId);
-      return ApiResponse.success(res, 200, {
-        email: user.email,
-        name: user.name,
-        career: user.career,
-        semester: user.semester
-      });
-    } catch (error) {
-      return ApiResponse.error(res, 404, 'Usuario no encontrado');
-    }
+    const userId = req.user?.id;
+    if (!userId) { throw new Error("No se encontró usuario") }
+    const user = await this.getProfileUseCase.execute(userId);
+    if (!user) { throw new Error("No se encontró usuario") }
+
+    ApiResponse.success(res, 200,
+      user,
+      "Perfil obtenido correctamente");
   }
 }

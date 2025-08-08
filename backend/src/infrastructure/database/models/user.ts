@@ -1,5 +1,6 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
 import { IUser } from '@domain/interfaces/user.interface';
+import { TokenVerificationModel } from './token_verification';
 
 export class UserModel extends Model<IUser> implements IUser {
   public id!: number;
@@ -57,7 +58,12 @@ export class UserModel extends Model<IUser> implements IUser {
     );
   }
 
-  public static associate(models: any): void {
-    // Relaciones pueden ir aquí
+  public static associate(models: {
+    TokenVerificationModel: typeof TokenVerificationModel
+  }): void {
+    this.hasMany(models.TokenVerificationModel, {
+      foreignKey: 'userId',
+      as: 'verificationTokens'
+    });
   }
 }

@@ -16,7 +16,7 @@
       "@app/*": ["application/*"],
       "@infra/*": ["infrastructure/*"],
       "@domain/*": ["domain/*"],
-      "@presentation/*": ["pres/*"],
+      "@pres/*": ["presentation/*"],
     }
   },
   "typeRoots": ["./node_modules/@types", "./src/types"],

@@ -33,7 +33,7 @@ const envSchema = z.object({
   REFRESH_TOKEN_EXPIRES: z.coerce.number().default(7), // días
 
   // Correo
-  EMAIL_PROVIDER: z.enum(['sendgrid', 'mailgun', 'ses', 'smtp', 'resend']).default('sendgrid'),
+  EMAIL_PROVIDER: z.enum(['sendgrid', 'mailgun', 'ses', 'smtp', 'resend']).default('smtp'),
   EMAIL_FROM: z.string().email().optional(),
   SENDGRID_API_KEY: z.string().optional(),
   MAILGUN_API_KEY: z.string().optional(),
@@ -42,6 +42,7 @@ const envSchema = z.object({
   SMTP_PORT: z.string().optional(),
   SMTP_USER: z.string().optional(),
   SMTP_PASS:z.string().optional(),
+  SMTP_SECURE:z.boolean().optional().default(true),
   AWS_REGION:z.string().optional(),
 
   // Redis
@@ -95,7 +96,7 @@ const config = {
       max: envValidation.data.DB_POOL_MAX,
     },
     timeout: envValidation.data.DB_QUERY_TIMEOUT,
-    ssl: envValidation.data.DB_SSL === 'true',
+    ssl: envValidation.data.DB_SSL,
     host:envValidation.data.DB_HOST 
   },
 
@@ -121,7 +122,8 @@ const config = {
       smtpHost: envValidation.data.SMTP_HOST,
       smtpPort: envValidation.data.SMTP_PORT,
       smtpUser: envValidation.data.SMTP_USER,
-      smtpPass: envValidation.data.SMTP_PASS
+      smtpPass: envValidation.data.SMTP_PASS,
+      smtpSecure: envValidation.data.SMTP_SECURE
     },
     aws:{
       region: envValidation.data.AWS_REGION

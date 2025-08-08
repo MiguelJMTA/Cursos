@@ -1,3 +1,5 @@
+import { UserModel } from "@infra/database/models/user";
+import { TokenVerificationModel } from "@infra/database/models/token_verification";
 import config from "@infra/config/env";
 import { Sequelize } from "sequelize";
 
@@ -13,10 +15,14 @@ const sequelize = new Sequelize(config.database.url, {
   },
   dialectOptions: {
     charset: "utf8",
-  },
-  define: {
-    timestamps: false,
-  },
+  }
 });
+
+
+UserModel.initialize(sequelize);
+TokenVerificationModel.initialize(sequelize);
+
+UserModel.associate({ TokenVerificationModel });
+TokenVerificationModel.associate({ UserModel });
 
 export default  sequelize;
