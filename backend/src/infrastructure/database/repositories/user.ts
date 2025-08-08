@@ -17,6 +17,20 @@ export class SequelizeUserRepository implements IUserRepository {
     );
   }
 
+  async findById(id: number): Promise<User | null> {
+    const user = await UserModel.findOne({ where: { id } });
+    if (!user) return null;
+    
+    return new User(
+      user.email,
+      user.password,
+      user.name,
+      user.career,
+      user.semester,
+      user.id
+    );
+  }
+
   async createUser(user: User): Promise<User> {
     const newUser = await UserModel.create({
       email: user.email,

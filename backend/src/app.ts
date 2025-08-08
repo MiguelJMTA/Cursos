@@ -3,6 +3,7 @@ import config from '@infra/config/env';
 import Logger from '@infra/logging/logger';
 import { checkDatabaseConnection } from '@infra/database/healthCheck';
 import sequelize from '@infra/database/sequelize';
+import { errorHandler } from '@infra/utils/error.hangler';
 
 async function startServer() {
   const app = express();
@@ -18,7 +19,7 @@ async function startServer() {
   // 2. Configurar middlewares y rutas
   app.use(express.json());
   // ... resto de la configuración
-
+  app.use(errorHandler)
   // 3. Iniciar servidor
   const server = app.listen(config.server.port, () => {
     Logger.info(`🚀 Servidor iniciado en modo ${config.env} en puerto ${config.server.port}`);
