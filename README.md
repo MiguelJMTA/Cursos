@@ -15,4 +15,12 @@ Para solicitar permiso de uso, por favor contacta a: https://www.linkedin.com/in
 
 ## Licencia
 
+Copyright (c) 2025 Jose Miguel Tierrablanca Arreola @MiguelJMTA
+
 Todos los derechos reservados.
+
+Este software es provisto exclusivamente para uso personal y de práctica.
+Queda prohibida la copia, distribución, modificación o cualquier otro uso
+sin la autorización explícita por escrito del autor.
+
+Para obtener permiso, por favor contacte a: https://www.linkedin.com/in/miguel-tierrablanca/
