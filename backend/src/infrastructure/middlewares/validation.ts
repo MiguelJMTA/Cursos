@@ -1,4 +1,3 @@
-// src/presentation/middleware/validationMiddleware.ts
 import { Request, Response, NextFunction } from "express";
 import { ClassConstructor, plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
@@ -14,7 +13,7 @@ export const validationMiddleware = <T extends object>(dto: ClassConstructor<T>)
         .flatMap(error => Object.values(error.constraints || {}))
         .join(", ");
       ApiResponse.error(res, 400, message);
-      return;  // importante el return para detener la ejecución
+      return;  
     }
 
     req.body = dtoObj;

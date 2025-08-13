@@ -1,6 +1,7 @@
 import { UserModel } from '@infra/database/models/user';
 import { IUserRepository } from '@domain/interfaces/user.repository';
 import { User } from '@domain/entities/user';
+import { Login } from '@domain/entities/user.login';
 
 export class SequelizeUserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<User | null> {
@@ -47,6 +48,23 @@ export class SequelizeUserRepository implements IUserRepository {
       newUser.career,
       newUser.semester,
       newUser.id
+    );
+  }
+
+  async userLogIn(loginInfo: Login): Promise<User|null> {
+    const user = await UserModel.findOne({ where: {
+      email:loginInfo.email,
+      password:loginInfo.password
+    }  });
+    if (!user) return null;
+    
+    return new User(
+      user.email,
+      user.password,
+      user.name,
+      user.career,
+      user.semester,
+      user.id
     );
   }
 }

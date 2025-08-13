@@ -1,4 +1,3 @@
-// src/presentation/dto/RegisterUserDto.ts
 import { IsEmail, IsString, MinLength, IsInt, Min } from "class-validator";
 
 export class RegisterUserDto {

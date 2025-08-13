@@ -1,4 +1,3 @@
-// src/infrastructure/logging/logger.ts
 import winston, { format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import config from '../config/env';

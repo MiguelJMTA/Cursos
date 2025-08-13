@@ -7,7 +7,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 
   if (!token) {
     ApiResponse.error(res, 401, 'Token no proporcionado');
-    return; // importante para detener la ejecución
+    return; 
   }
 
   try {
@@ -19,6 +19,6 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     next();
   } catch (error) {
     ApiResponse.error(res, 403, 'Token inválido o expirado');
-    return; // detener ejecución
+    return; 
   }
 };

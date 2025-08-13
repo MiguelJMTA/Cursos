@@ -3,12 +3,10 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { z } from 'zod';
 
-// 1. Cargar variables de entorno según el entorno
 const envPath = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 
 dotenv.config({ path: path.resolve(process.cwd(), envPath) });
 
-// 2. Esquema de validación con Zod
 const envSchema = z.object({
   // Entorno y servidor
   NODE_ENV: z.enum(['development', 'production', 'test', 'staging']).default('development'),
@@ -58,7 +56,6 @@ const envSchema = z.object({
   FEATURE_MAILING_ENABLED: z.coerce.boolean().default(true),
 });
 
-// 3. Validación y transformación
 const envValidation = envSchema.safeParse(process.env);
 
 if (!envValidation.success) {
@@ -70,7 +67,6 @@ if (!envValidation.success) {
   throw new Error(`${errorMessage}\n${errors}`);
 }
 
-// 4. Configuración tipada
 const config = {
   // Entorno
   env: envValidation.data.NODE_ENV,
@@ -159,7 +155,6 @@ const config = {
   },
 } as const;
 
-// 5. Tipos derivados
 export type Environment = typeof config.env;
 export type EmailProvider = typeof config.email.provider;
 export type ServerConfig = typeof config.server;

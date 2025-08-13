@@ -2,7 +2,6 @@ import sequelize from './sequelize'; // Ajusta la ruta a tu instancia de Sequeli
 import Logger from '../logging/logger';
 export async function checkDatabaseConnection(): Promise<boolean> {
   try {
-    // Método para probar la conexión
     await sequelize.authenticate();
 
     Logger.info('✅ Conexión a la base de datos establecida');
