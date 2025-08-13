@@ -1,5 +1,3 @@
-// email.types.ts
-
 export interface EmailOptions {
   to: string | string[];
   subject: string;
@@ -14,7 +12,6 @@ export interface EmailOptions {
   }[];
 }
 
-// Solo dejamos 'smtp' por ahora, pero dejamos el tipo expandible
 export type EmailProviderType = 'smtp';
 
 export interface SMTPAuthConfig {
@@ -22,7 +19,6 @@ export interface SMTPAuthConfig {
   pass: string;
 }
 
-// Como solo usarás SMTP, este es el único config por ahora
 export interface SMTPProviderConfig {
   type: 'smtp';
   host: string;

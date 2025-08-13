@@ -4,18 +4,23 @@ import { authMiddleware } from '@infra/middlewares/auth';
 import { validationMiddleware } from '@infra/middlewares/validation';
 import { RegisterUserDto } from '@pres/dtos/user.register';
 import { asyncHandler } from '@infra/utils/async.handler';
+import { UserLogInDto } from '@pres/dtos/login';
 
 export const userRouter = (controller: UserController) => {
   const router = Router();
 
-  // Ruta para registro, con validación del DTO y sin autenticación
   router.post(
     '/register',
     validationMiddleware(RegisterUserDto),
     asyncHandler(controller.register.bind(controller))
   );
 
-  // Ruta para obtener perfil del usuario autenticado
+   router.post(
+    '/login',
+    validationMiddleware(UserLogInDto),
+    asyncHandler(controller.logIn.bind(controller))
+  );
+
   router.get(
     '/profile',
     authMiddleware,

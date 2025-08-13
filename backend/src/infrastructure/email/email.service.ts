@@ -1,10 +1,8 @@
-// src/infrastructure/email/emailServiceFactory.ts
-
 import config from '@infra/config/env';
 import { UniversalEmailService } from './email.service.sender';
-import { SMTPProviderConfig } from './email.types'; // Ya no usas EmailProviderConfig genérico
+import { SMTPProviderConfig } from './email.types'; 
 
-// Carga y valida config solo para SMTP
+
 const getSMTPConfig = (): SMTPProviderConfig => {
   if (!config.email.smtp.smtpHost || !config.email.smtp.smtpUser || !config.email.smtp.smtpPass) {
     throw new Error('Faltan configuraciones SMTP necesarias');

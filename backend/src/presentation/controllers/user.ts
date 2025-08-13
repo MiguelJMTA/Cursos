@@ -2,13 +2,14 @@ import { Request, Response } from 'express';
 import { RegisterUserUseCase } from '@app/use-cases/user.register';
 import { GetUserProfileUseCase } from '@app/use-cases/user.get.profile';
 import { ApiResponse } from '@infra/utils/api.response';
-import { PasswordHash } from '@infra/utils/password.service';
-import { SequelizeUserRepository } from '@infra/database/repositories/user';
+import { UserLogInUseCase } from '@app/use-cases/user.login';
 
 export class UserController {
   constructor(
     private readonly registerUseCase: RegisterUserUseCase,
-    private readonly getProfileUseCase: GetUserProfileUseCase
+    private readonly getProfileUseCase: GetUserProfileUseCase,
+    private readonly loginUseCase: UserLogInUseCase,
+
   ) { }
 
   async register(req: Request, res: Response) {
@@ -30,5 +31,15 @@ export class UserController {
     ApiResponse.success(res, 200,
       user,
       "Perfil obtenido correctamente");
+  }
+
+  async logIn(req: Request, res: Response) {
+
+    const data = req.body;
+
+    const user = await this.loginUseCase.execute(data);
+
+    ApiResponse.success(res, 200, user, "LogInfo");
+
   }
 }
